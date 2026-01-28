@@ -1,0 +1,12 @@
+groups:
+  - name: Heartbeats
+    rules:
+      - alert: CommunicationFailure
+        expr: infra_heartbeat == 1
+        for: 10s
+        labels:
+          severity: critical
+          # notify: DojoInfraPM
+        annotations:
+          summary: "The service node is not able to communicate with {{ $labels.device_name }} at {{ $labels.ip }}"
+          # runbook_link: "https://confluence.teslamotors.com/pages/viewpage.action?pageId=2955332475#PlatformAlerts-deviceCommunicationFailure"
